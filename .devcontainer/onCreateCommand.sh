@@ -1,30 +1,15 @@
 #!/bin/bash
-# 1. Directory Setup
 mkdir -p /tmp/windows
 cp /workspaces/Windows/.devcontainer/helpers/* /usr/local/bin/ 2>/dev/null
 chmod +x /usr/local/bin/*
-
-# 2. MEGA NUKE (Freeing space)
-sudo rm -rf /usr/local/share/dotnet /usr/local/lib/node_modules /usr/local/go /opt/ghc
-
-# 3. Minimal Install
+sudo rm -rf /usr/local/share/dotnet /usr/local/lib/node_modules /usr/local/go
 echo "[SYSTEM] Installing tools..."
 sudo apt-get update && sudo apt-get install -y --no-install-recommends qemu-system-x86 qemu-utils wget curl novnc websockify net-tools ovmf
 sudo apt-get clean
 
-# 4. DIRECT VHDX DOWNLOAD (No extraction!)
 if [ ! -f "/tmp/windows/data.vhdx" ]; then
-    echo '[SYSTEM] Downloading 21GB VHDX directly to 40GB Drive...'
-    curl -L -o /tmp/windows/data.vhdx "https://my.microsoftpersonalcontent.com/personal/e633715ed8e8b835/_layouts/15/download.aspx?UniqueId=864cc3db-1df4-425d-b3c5-8decd6ca4279&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI1MTAwNDFmZS1lYTQyLTQ1ZGQtYjFjMC02ZjhhYTMxMWQzODIiLCJhdWQiOiIwMDAwMDAwMy0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAvbXkubWljcm9zb2Z0cGVyc29uYWxjb250ZW50LmNvbUA5MTg4MDQwZC02YzY3LTRjNWItYjExMi0zNmEzMDRiNjZkYWQiLCJleHAiOiIxNzc1Mjk1ODk0In0.WLKrkfMYxIkOhq06KJEHTtmf5q6UGF31oxVkZCEcPUkARXPj4eNKPvm2HaUXa6uVO8w1JgmmFkPgEB8rBx1DULbytZ76c9VU_Soxd7I0mNOCpOdRg2SfwyB_PwQGB8B2pwRnil1PJ8rBVLwb5t0cOEcGlH3jzGg3cnGCTs5-Q6IupHPe3TprV2r1TSVhlgzM_3fEfobp97SkW38fGCyB8siGfWCJg_vlp8HdkuKg82y4VGrX8DK7ugkVEkz7Zu3FVPznzHHZJJbVF_QIsGsTQoD3nojmGh-KpbvSiCYlbe8NAzc_tR2kFi4NCqzx5uLQFa2RTgiwIYkmXy970m3ZbwQnOR0tANUmZuMSNjwSmiu7-tP3qoKkB7AfcSYlTGviOhXacatZGviRkK3665lnEEBvz27St6rXZ_UF1twqIui5ozBIvRJQTbOdqtWAW10c-GbIoi1lm7oD42FNCJx4T7PKJ8YiaEp__w8-BSA53qPhpNn-vakR_ABrRdo6c63k9l7EoBmdWAvZ1QgQt7xYiw.9WhHFDOyRBR8EM1EeD6cRmcQC3RKosEwX312jIUuLAg"
-    
-    # Check if we got a real file
-    SIZE=
-    if [ "" -lt 1000000000 ]; then
-        echo "[ERROR] Download failed or link expired. File size:  bytes."
-        exit 1
-    fi
-    
+    echo '[SYSTEM] Downloading VHDX directly...'
+    curl -L -o /tmp/windows/data.vhdx "https://my.microsoftpersonalcontent.com/personal/e633715ed8e8b835/_layouts/15/download.aspx?UniqueId=31984a96-101e-4304-a231-96356ed22d29&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiI1MTAwNDFmZS1lYTQyLTQ1ZGQtYjFjMC02ZjhhYTMxMWQzODIiLCJhdWQiOiIwMDAwMDAwMy0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAvbXkubWljcm9zb2Z0cGVyc29uYWxjb250ZW50LmNvbUA5MTg4MDQwZC02YzY3LTRjNWItYjExMi0zNmEzMDRiNjZkYWQiLCJleHAiOiIxNzc1MjgzNDIyIn0.GEMcDPElgP6GsimMPTnX6IkjO6_WWF1V1Hki7MFLh2c52pL3W6Pb78NmM7yhMgiteSXcoR4Vh5XoG_PwztL12Gd0eWE7hBJ507KbjIlOS9uNr2PTnjwA9xKZrf9kMlTw_3BgxQ1CSpR9ldDV5LtzuPQLQJpEiunKvwZAqeVSDWNIWGTIORsNhdxMneD4WHS1zIbTB-TTYUNWXP_4L99pVGdaj3uopBYGsBi1JuZU6VFtHuOOyrvvR0JDb0zZfAgZrKowSNU0vh0_S6zeNwCZwObh5C8vhGHDiyWOGrTGwo5GDiRghl-l18CQqq3Mj67p5eD7QicfkX5V4goJ0AAlL_ECbQB3flShCoxAFvDSB70dRf4qfgNpu02GEYIxe2dYcKuVsxHJP1ZIaXa0OkTG-4C4doExYZRzEa_xmMsQAtuMO5xM63oy1ppSIc4lMWDiYWnxLseY6SBARZKTuM6wNDYNjtOsEV2PvGc1mu__vwhhkTV54zoyEzJ9qAFvy1UIICq-hmvWmbEgm-Y_X0n9Bw.FO84cEq6bOJ3a_meRUaM4wvwtLO2XT9gPQrz8HYVNvg"
     sudo chmod -R 777 /tmp/windows
 fi
-
 echo '[SUCCESS] Setup finished. Type start.'
