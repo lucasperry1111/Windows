@@ -1,14 +1,11 @@
 #!/bin/bash
-# 1. Verify file size before booting
-ls -lh /workspaces/Windows/windows/data.vhdx
-
-# 2. Boot with Cloud Compatibility flags (Fixes 'Invalid argument')
-sudo qemu-system-x86_64 \
+echo "[SYSTEM] Booting Windows from 40GB /tmp drive..."
+qemu-system-x86_64 \
   -m 8G \
   -smp 4 \
   -enable-kvm \
   -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time \
-  -drive file=/workspaces/Windows/windows/data.vhdx,format=vhdx,cache=writeback,aio=threads \
+  -drive file=/tmp/windows/data.vhdx,format=vhdx,cache=writeback,aio=threads \
   -netdev user,id=net0,hostfwd=tcp::8443-:8443 \
   -device virtio-net-pci,netdev=net0 \
   -vga std \
