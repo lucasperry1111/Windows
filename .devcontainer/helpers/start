@@ -7,7 +7,9 @@ echo "[SYSTEM] Starting noVNC Console..."
 sudo cp /usr/share/novnc/vnc.html /usr/share/novnc/index.html 2>/dev/null
 sudo /usr/bin/websockify --web /usr/share/novnc/ 8006 localhost:5900 >/dev/null 2>&1 &
 
-echo "[SYSTEM] Booting Windows (Direct VHDX Mode)..."
+echo "[SYSTEM] Booting Windows (High-Compatibility Mode)..."
+# -vga none -device virtio-vga: Fixes the 'Black Screen' during login
+# -device usb-tablet: Fixes mouse desync issues in noVNC
 sudo qemu-system-x86_64 \
   -m 4G \
   -smp 2 \
@@ -17,6 +19,9 @@ sudo qemu-system-x86_64 \
   -drive file=/tmp/windows/data.vhdx,format=vhdx,cache=writeback,aio=threads \
   -netdev user,id=net0,hostfwd=tcp::8443-:8443 \
   -device e1000,netdev=net0 \
-  -vga std \
   -vnc :0 \
+  -vga none \
+  -device virtio-vga \
+  -device usb-ehci,id=usb,bus=pci.0,addr=0x7 \
+  -device usb-tablet \
   -audiodev none,id=none
