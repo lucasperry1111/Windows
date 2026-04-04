@@ -3,28 +3,20 @@
 sudo pkill -f websockify
 sudo pkill -f qemu-system-x86_64
 
-# 2. AUTO-FIND UEFI FIRMWARE (Fixed!)
-UEFI_PATH=$(find /usr/share -name OVMF_CODE.fd | head -n 1)
-if [ -z "$UEFI_PATH" ]; then
-    echo "[ERROR] Could not find UEFI firmware (OVMF). Try running 'sudo apt install ovmf' manually."
-    exit 1
-fi
-echo "[SYSTEM] Using UEFI firmware: $UEFI_PATH"
-
 echo "[SYSTEM] Starting noVNC Console..."
 sudo cp /usr/share/novnc/vnc.html /usr/share/novnc/index.html 2>/dev/null
 sudo /usr/bin/websockify --web /usr/share/novnc/ 8006 localhost:5900 &
 
-echo "[SYSTEM] Booting Windows in UEFI mode..."
+echo "[SYSTEM] Booting Windows 11 (UEFI Mode)..."
 sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches
 
-# 3. Boot with Dynamic UEFI path
+# 2. Boot with the EXACT UEFI firmware found on this server
 sudo qemu-system-x86_64 \
   -m 6G \
   -smp 2 \
   -enable-kvm \
   -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time \
-  -drive if=pflash,format=raw,readonly=on,file="$UEFI_PATH" \
+  -drive if=pflash,format=raw,readonly=on,file=/usr/share/OVMF/OVMF_CODE_4M.fd \
   -drive file=/tmp/windows/data.vhdx,format=vhdx,cache=writeback,aio=threads \
   -netdev user,id=net0,hostfwd=tcp::8443-:8443 \
   -device virtio-net-pci,netdev=net0 \
