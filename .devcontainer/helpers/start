@@ -1,3 +1,22 @@
 #!/bin/bash
-/usr/bin/novnc_proxy --vnc localhost:5900 --listen 8006 &
-qemu-system-x86_64 -m 8G -smp 4 -enable-kvm -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time -drive file=/workspaces/Windows/windows/data.vhdx,format=vhdx -netdev user,id=net0,hostfwd=tcp::8443-:8443 -device virtio-net-pci,netdev=net0 -vga std -vnc :0 -device intel-hda -device hda-duplex
+# 1. Automatically find the VHDX file
+DISK_FILE=$(ls /workspaces/Windows/windows/*.vhdx 2>/dev/null | head -n 1)
+
+if [ -z "$DISK_FILE" ]; then
+    echo "[ERROR] No VHDX file found in /workspaces/Windows/windows/"
+    exit 1
+fi
+
+echo "[SYSTEM] Booting from: $DISK_FILE"
+
+# 2. Boot the VM
+qemu-system-x86_64 \
+  -m 8G \
+  -smp 4 \
+  -enable-kvm \
+  -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time \
+  -drive file="$DISK_FILE",format=vhdx \
+  -netdev user,id=net0,hostfwd=tcp::8443-:8443 \
+  -device virtio-net-pci,netdev=net0 \
+  -vga std \
+  -device intel-hda -device hda-duplex
