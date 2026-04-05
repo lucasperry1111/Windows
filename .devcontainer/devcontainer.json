@@ -1,10 +1,11 @@
 ﻿{
-    "name": "Methalo QEMU Cloud",
+    "name": "Methalo RDP",
     "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-    "forwardPorts": [ 8006, 8443 ],
+    "forwardPorts": [ 8006, 8443, 3389 ],
     "portsAttributes": {
-        "8006": { "label": "QEMU Console", "onAutoForward": "openBrowser" },
-        "8443": { "label": "Amazon DCV", "onAutoForward": "notify" }
+        "8006": { "label": "NoVNC", "onAutoForward": "openBrowser" },
+        "8443": { "label": "RDP Connect", "onAutoForward": "notify" }
+        "3389": { "label": "RDP", "onAutoForward": "notify" }
     },
     "runArgs": [ "--device=/dev/kvm", "--privileged" ],
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/Windows,type=bind",
