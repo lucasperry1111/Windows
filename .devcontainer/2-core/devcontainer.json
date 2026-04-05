@@ -1,1 +1,13 @@
-
+{
+    "name": "Methalo 2-Core",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "forwardPorts": [ 8006, 8443 ],
+    "portsAttributes": {
+        "8006": { "label": "NoVNC (DEBUG)", "onAutoForward": "notify" },
+        "8443": { "label": "Methalo Browser", "onAutoForward": "openBrowser" }
+    },
+    "runArgs": [ "--device=/dev/kvm", "--privileged" ],
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/Windows,type=bind",
+    "workspaceFolder": "/workspaces/Windows",
+    "onCreateCommand": "sudo bash .devcontainer/2-core/onCreateCommand.sh"
+}
