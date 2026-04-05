@@ -7,7 +7,7 @@ echo "[SYSTEM] Starting Methalo Browser..."
 sudo cp /usr/share/novnc/vnc.html /usr/share/novnc/index.html 2>/dev/null
 sudo /usr/bin/websockify --web /usr/share/novnc/ 8006 localhost:5900 >/dev/null 2>&1 &
 
-echo "[SYSTEM] Booting Windows (High-Compatibility Mode)..."
+echo "[SYSTEM] Booting Windows..."
 sudo qemu-system-x86_64 \
   -m 6G \
   -smp 2 \
