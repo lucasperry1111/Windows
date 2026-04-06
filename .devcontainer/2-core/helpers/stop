@@ -1,0 +1,16 @@
+#!/bin/bash
+echo "[SYSTEM] Stopping Methalo Browser services..."
+
+if pgrep -f qemu-system-x86_64 > /dev/null; then
+    echo "[SYSTEM] Shutting down Windows VM..."
+    sudo pkill -9 -f qemu-system-x86_64
+else
+    echo "[SYSTEM] Windows VM is already stopped."
+fi
+
+if pgrep -f websockify > /dev/null; then
+    echo "[SYSTEM] Stopping web console bridge..."
+    sudo pkill -9 -f websockify
+fi
+
+echo "[SUCCESS] All services stopped."
