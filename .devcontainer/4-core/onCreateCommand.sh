@@ -4,12 +4,12 @@ cp /workspaces/Windows/.devcontainer/4-core/helpers/* /usr/local/bin/ 2>/dev/nul
 chmod +x /usr/local/bin/*
 sudo rm -rf /usr/local/share/dotnet /usr/local/lib/node_modules /usr/local/go
 echo "[SYSTEM] Installing tools..."
-sudo apt-get update && sudo apt-get install -y --no-install-recommends qemu-system-x86 qemu-utils wget curl ovmf
+sudo apt-get update && sudo apt-get install -y --no-install-recommends qemu-system-x86 qemu-utils wget curl novnc websockify net-tools ovmf
 sudo apt-get clean
 
-if [ ! -f "/tmp/windows/Methalo.vhdx" ]; then
+if [ ! -f "/tmp/windows/data.vhdx" ]; then
     echo '[SYSTEM] Downloading VHDX directly...'
-    curl -L -o /tmp/windows/Methalo.vhdx "https://pub-dc6f3e26ce5940dd92d9c742a92d150e.r2.dev/Sunshine.vhdx"
+    curl -L -o /tmp/windows/Methalo.vhdx ""
     
     sudo chmod -R 777 /tmp/windows
 fi
