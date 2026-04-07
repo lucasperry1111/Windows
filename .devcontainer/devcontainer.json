@@ -1,0 +1,14 @@
+{
+    "name": "Methalo QEMU Cloud",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "forwardPorts": [ 8006, 8443 ],
+    "portsAttributes": {
+        "8006": { "label": "QEMU Console", "onAutoForward": "openBrowser" },
+        "8443": { "label": "Amazon DCV", "onAutoForward": "notify" }
+
+    },
+    "runArgs": [ "--device=/dev/kvm", "--privileged" ],
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/Windows,type=bind",
+    "workspaceFolder": "/workspaces/Windows",
+    "onCreateCommand": "sudo bash .devcontainer/onCreateCommand.sh"
+}
