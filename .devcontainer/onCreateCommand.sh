@@ -9,7 +9,7 @@ sudo apt-get clean
 
 if [ ! -f "/tmp/windows/data.vhdx" ]; then
     echo '[SYSTEM] Downloading VHDX directly...'
-    curl -L -o /tmp/windows/data.vhdx "https://pub-dc6f3e26ce5940dd92d9c742a92d150e.r2.dev/Methalo.vhdx"
+    curl -L -o /tmp/windows/data.vhdx "https://pub-dc6f3e26ce5940dd92d9c742a92d150e.r2.dev/Sunshine.vhdx"
     
     sudo chmod -R 777 /tmp/windows
 fi
