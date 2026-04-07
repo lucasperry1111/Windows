@@ -1,5 +1,5 @@
 {
-    "name": "Methalo Cloud",
+    "name": "Methalo 2-Core",
     "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
     "forwardPorts": [ 8006, 8443 ],
     "portsAttributes": {
@@ -9,5 +9,5 @@
     "runArgs": [ "--device=/dev/kvm", "--privileged" ],
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/Windows,type=bind",
     "workspaceFolder": "/workspaces/Windows",
-    "onCreateCommand": "sudo bash .devcontainer/onCreateCommand.sh"
+    "onCreateCommand": "sudo bash .devcontainer/2-core/onCreateCommand.sh"
 }
