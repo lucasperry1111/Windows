@@ -12,7 +12,7 @@
                                      },
                             "8443":  {
                                          "label":  "Methalo Browser",
-                                         "onAutoForward":  "openBrowser"
+                                         "onAutoForward":  "notify"
                                      }
                         },
     "runArgs":  [
