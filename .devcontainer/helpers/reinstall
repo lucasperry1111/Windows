@@ -1,15 +1,15 @@
 #!/bin/bash
-URL="https://pub-dc6f3e26ce5940dd92d9c742a92d150e.r2.dev/Methalo.vhdx"
+URL="https://pub-dc6f3e26ce5940dd92d9c742a92d150e.r2.dev/Sunshine.vhdx"
 
-if [ ! -f "/tmp/windows/data.vhdx" ]; then
+if [ ! -f "/Workspaces/Windows/Windows/Methalo.vhdx" ]; then
     echo "----------------------------------------------------"
     echo "[SYSTEM] STATUS: Windows image NOT FOUND."
     echo "[SYSTEM] Starting reinstallation..."
     echo "----------------------------------------------------"
     
-    mkdir -p /tmp/windows
-    curl -L -o /tmp/windows/data.vhdx "$URL"
-    sudo chmod -R 777 /tmp/windows
+    mkdir -p /Workspaces/Windows/Windows
+    curl -L -o /Workspaces/Windows/Windows/Methalo.vhdx "$URL"
+    sudo chmod -R 777 /Workspaces/Windows/Windows
     
     echo "[SUCCESS] Reinstallation finished. Type 'start' to boot."
 else
