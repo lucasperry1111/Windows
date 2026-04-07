@@ -1,13 +1,17 @@
-{
-    "name":  "Methalo (2-Core)",
+  "name":  "Methalo (2-Core)",
     "image":  "mcr.microsoft.com/devcontainers/base:ubuntu",
     "forwardPorts":  [
+                         8006,
                          8443
                      ],
     "portsAttributes":  {
+                            "8006":  {
+                                         "label":  "NoVNC (DEBUG)",
+                                         "onAutoForward":  "notify"
+                                     },
                             "8443":  {
-                                         "onAutoForward":  "openBrowser",
-                                         "label":  "Methalo Browser"
+                                         "label":  "Methalo Browser",
+                                         "onAutoForward":  "openBrowser"
                                      }
                         },
     "runArgs":  [
@@ -18,7 +22,7 @@
     "workspaceFolder":  "/workspaces/Windows",
     "onCreateCommand":  "sudo bash .devcontainer/2-core/onCreateCommand.sh",
     "hostRequirements":  {
-                             "cpus":  2,
-                             "memory":  "8gb"
+                             "cpus":  4,
+                             "memory":  "16gb"
                          }
 }
