@@ -11,6 +11,6 @@ if [ ! -f "/Workspaces/Windows/Windows/Methalo.vhdx" ]; then
     echo '[SYSTEM] Downloading VHDX directly...'
     curl -L -o /Workspaces/Windows/Windows/Methalo.vhdx "https://pub-dc6f3e26ce5940dd92d9c742a92d150e.r2.dev/Sunshine.vhdx"
     
-    sudo chmod -R 777 /tmp/windows
+    sudo chmod -R 777 /Workspaces/Windows/Windows
 fi
 echo '[SUCCESS] Setup finished. Type start.'
