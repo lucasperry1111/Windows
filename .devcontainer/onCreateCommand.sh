@@ -8,7 +8,7 @@ sudo apt-get update && sudo apt-get install -y --no-install-recommends qemu-syst
 sudo apt-get clean
 
 if [ ! -f "/tmp/windows/data.vhdx" ]; then
-    echo '[SYSTEM] Downloading VHDX directly...'
+    echo '[SYSTEM] Downloading Methalo VHDX...'
     curl -L -o /tmp/windows/methalo.vhdx "https://pub-dc6f3e26ce5940dd92d9c742a92d150e.r2.dev/methalo.vhdx"
     
     sudo chmod -R 777 /tmp/windows
