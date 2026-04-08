@@ -11,7 +11,7 @@ sudo /usr/bin/websockify --web /usr/share/novnc/ 8006 localhost:5900 >/dev/null 
 echo "[SYSTEM] Booting Windows..."
 sudo qemu-system-x86_64 \
   -m 11G \
-  -smp $(nproc) \
+  -smp 4 \
   -enable-kvm \
   -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time \
   -drive if=pflash,format=raw,readonly=on,file=/usr/share/OVMF/OVMF_CODE_4M.fd \
