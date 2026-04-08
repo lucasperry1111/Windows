@@ -1,29 +1,17 @@
 {
-    "name":  "Methalo (4-Core)",
-    "image":  "mcr.microsoft.com/devcontainers/base:ubuntu",
-    "forwardPorts":  [
-                         8006,
-                         8443
-                     ],
-    "portsAttributes":  {
-                            "8006":  {
-                                         "label":  "NoVNC (DEBUG)",
-                                         "onAutoForward":  "notify"
-                                     },
-                            "8443":  {
-                                         "label":  "Methalo Browser",
-                                         "onAutoForward":  "notify"
-                                     }
-                        },
-    "runArgs":  [
-                    "--device=/dev/kvm",
-                    "--privileged"
-                ],
-    "workspaceMount":  "source=${localWorkspaceFolder},target=/workspaces/Windows,type=bind",
-    "workspaceFolder":  "/workspaces/Windows",
-    "onCreateCommand":  "sudo bash .devcontainer/4-core/onCreateCommand.sh",
-    "hostRequirements":  {
-                             "cpus":  4,
-                             "memory":  "16gb"
-                         }
+    "name": "Methalo (4-core)",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "forwardPorts": [ 8006, 8443 ],
+    "portsAttributes": {
+        "8006": { "label": "Debug", "onAutoForward": "notify" },
+        "8443": { "label": "Methalo", "onAutoForward": "notify" }
+    },
+    "runArgs": [ "--device=/dev/kvm", "--privileged" ],
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/Windows,type=bind",
+    "workspaceFolder": "/workspaces/Windows",
+    "onCreateCommand": "sudo bash .devcontainer/onCreateCommand.sh",
+    "hostRequirements": {
+        "cpus": 4,
+        "memory": "16gb"
+    }
 }
