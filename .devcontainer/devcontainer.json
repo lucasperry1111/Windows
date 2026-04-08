@@ -5,10 +5,13 @@
     "portsAttributes": {
         "8006": { "label": "Debug", "onAutoForward": "notify" },
         "8443": { "label": "Methalo", "onAutoForward": "notify" }
-
     },
     "runArgs": [ "--device=/dev/kvm", "--privileged" ],
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/Windows,type=bind",
     "workspaceFolder": "/workspaces/Windows",
-    "onCreateCommand": "sudo bash .devcontainer/onCreateCommand.sh"
+    "onCreateCommand": "sudo bash .devcontainer/onCreateCommand.sh",
+    "hostRequirements": {
+        "cpus": 2,
+        "memory": "8gb"
+    }
 }
