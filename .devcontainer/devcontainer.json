@@ -1,10 +1,10 @@
 {
     "name": "Methalo (Default)",
     "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-    "forwardPorts": [ 8006, 8443 ],
+    "forwardPorts": [ 8006, 8080 ],
     "portsAttributes": {
-        "8443": { "label": "Methalo Browser (Myrtille)", "onAutoForward": "openBrowser" },
-        "8006": { "label": "noVNC Console", "onAutoForward": "notify" },
+        "8080": { "label": "Myrtille Browser", "onAutoForward": "notify" },
+        "8006": { "label": "noVNC Console", "onAutoForward": "notify" }
     },
     "runArgs": [ "--device=/dev/kvm", "--privileged" ],
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/Windows,type=bind",
