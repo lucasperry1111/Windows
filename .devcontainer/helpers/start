@@ -4,9 +4,9 @@ sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
 
 echo "[SYSTEM] Starting noVNC Console..."
 sudo cp /usr/share/novnc/vnc.html /usr/share/novnc/index.html 2>/dev/null
-sudo /usr/bin/websockify --web /usr/share/novnc/ 8006 localhost:5900 >/dev/null 2>&1
+sudo /usr/bin/websockify --web /usr/share/novnc/ 8006 localhost:5900 >/dev/null 2>&1 &
 
-echo "[SYSTEM] Booting Windows
+echo "[SYSTEM] Booting Windows..."
 sudo qemu-system-x86_64 \
   -m 11G \
   -smp 4 \
@@ -14,8 +14,8 @@ sudo qemu-system-x86_64 \
   -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time \
   -drive if=pflash,format=raw,readonly=on,file=/usr/share/OVMF/OVMF_CODE_4M.fd \
   -drive file=/tmp/windows/methalo.vhdx,format=vhdx,cache=writeback,aio=threads \
-  -netdev user,id=net0,hostfwd=tcp::8443-:80,hostfwd=tcp::3389-:3389 \
-  -device virtio-net-pci,netdev=net0 \
+  -netdev user,id=net0,hostfwd=tcp::8443-:8443 \
+  -device e1000,netdev=net0 \
   -vnc :0 \
   -vga none \
   -device virtio-vga \
