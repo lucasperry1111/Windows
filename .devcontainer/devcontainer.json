@@ -1,10 +1,10 @@
 {
-    "name": "Methalo QEMU Cloud",
+    "name": "Methalo (Default)",
     "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
     "forwardPorts": [ 8006, 8443 ],
     "portsAttributes": {
-        "8006": { "label": "QEMU Console", "onAutoForward": "notify" },
-        "8443": { "label": "Amazon DCV", "onAutoForward": "notify" }
+        "8006": { "label": "Debug", "onAutoForward": "notify" },
+        "8443": { "label": "Methalo", "onAutoForward": "notify" }
 
     },
     "runArgs": [ "--device=/dev/kvm", "--privileged" ],
