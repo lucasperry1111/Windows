@@ -3,7 +3,7 @@ sudo pkill -9 -f qemu-system-x86_64 2>/dev/null
 sudo pkill -9 -f websockify 2>/dev/null
 sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
 
-echo "[SYSTEM] Starting noVNC Console..."
+echo "[SYSTEM] Starting Debug Console..."
 sudo cp /usr/share/novnc/vnc.html /usr/share/novnc/index.html 2>/dev/null
 sudo /usr/bin/websockify --web /usr/share/novnc/ 8006 localhost:5900 >/dev/null 2>&1 &
 
