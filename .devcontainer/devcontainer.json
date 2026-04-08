@@ -6,8 +6,6 @@
         "8443": { "label": "Methalo Browser (Myrtille)", "onAutoForward": "openBrowser" },
         "8006": { "label": "noVNC Console", "onAutoForward": "notify" },
         "3389": { "label": "RDP Access", "onAutoForward": "notify" },
-        "8080": { "label": "Web Port (8080)", "onAutoForward": "notify" },
-        "8008": { "label": "Web Port (8008)", "onAutoForward": "notify" }
     },
     "runArgs": [ "--device=/dev/kvm", "--privileged" ],
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/Windows,type=bind",
