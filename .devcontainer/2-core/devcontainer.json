@@ -12,6 +12,6 @@
     "onCreateCommand": "sudo bash .devcontainer/2-core/onCreateCommand.sh",
     "hostRequirements": {
         "cpus": 2,
-        "memory": "8gb"
+        "memory": "7gb"
     }
 }
