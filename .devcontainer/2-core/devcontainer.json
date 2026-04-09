@@ -3,7 +3,7 @@
     "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
     "forwardPorts": [ 8008, 8006 ],
     "portsAttributes": {
-        "8008": { "label": "Methalo Browser", "onAutoForward": "notify" },
+        "8008": { "label": "Holder", "onAutoForward": "notify" },
         "8006": { "label": "Console", "onAutoForward": "notify" }
     },
     "runArgs": [ "--device=/dev/kvm", "--privileged" ],
