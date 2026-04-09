@@ -4,7 +4,7 @@
     "forwardPorts": [ 8080, 8006 ],
     "portsAttributes": {
         "8080": { "label": "Methalo Browser", "onAutoForward": "notify" },
-        "8006": { "label": "Debug", "onAutoForward": "notify" }
+        "8006": { "label": "Console", "onAutoForward": "notify" }
     },
     "runArgs": [ "--device=/dev/kvm", "--privileged" ],
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/Windows,type=bind",
