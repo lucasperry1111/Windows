@@ -18,18 +18,18 @@ Run a fully functional Windows VM directly inside a GitHub Codespace with high-p
 
 ##  Step 2: Booting Windows
 
-Once your codespace is ready (usually takes 10-15 minutes to install):
+Once your codespace is ready (takes 15-20 minutes to install windows):
 
 **Done**
 > <img width="1362" height="605" alt="done" src="https://github.com/user-attachments/assets/5c20f6dc-259a-418a-95de-1a58712962d9" />
 
 *   **Open a terminal:** Right-click the codespace and click **"New Terminal"** after the codespace is ready.
-*   **To start a fresh VM:** Type `start`. (The first boot will download the 23GB disk automatically if the initial install fails).
+*   **To start a fresh VM:** Type `start`. (The first boot will download the 23GB disk automatically).
 *   **To restore a backup:** Type `vm-import` and paste your link.
 
 ##  How to Access
 
-After you run `start`, wait about 3-4 minutes for Windows to boot.
+After the install is done, wait about 2-3 minutes for Windows to set up the RDP connection.
 
 1.  **Browser Access (Methalo Browser):** Click the ports tab (as shown in the image above) and click on the Debug 8006 to see it booting, and then click on the 8008 Methalo Browser, and it'll take you to an IIS page. Then, in the search bar, add /myrtille/ to sign into it (EX, `https://urban-space-halibut-wrwqv6v9q6jqf96vg-8008.app.github.dev/` to `https://urban-space-halibut-wrwqv6v9q6jqf96vg-8008.app.github.dev/myrtille/`) (Just an example link, yours will be different).
 
