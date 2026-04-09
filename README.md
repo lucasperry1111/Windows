@@ -1,4 +1,4 @@
-# 🚀 Methalo Cloud Windows (QEMU)
+# 🚀 Methalo Windows
 
 Run a fully functional Windows VM directly inside a GitHub Codespace with high-performance networking and secure browser access.
 
