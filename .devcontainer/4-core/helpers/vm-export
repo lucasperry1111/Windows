@@ -1,0 +1,82 @@
+echo "----------------------------------------------------"
+read -p "[INPUT] Enter the email to receive the link: " DEST_EMAIL
+echo "----------------------------------------------------"
+
+SENDER_EMAIL="perrylucas8410@gmail.com"
+SENDER_PASS="ashqgtfwtrybclvf"
+
+echo "[SYSTEM] Terminating Processes..."
+sudo pkill -9 -f qemu-system-x86_64 2>/dev/null
+sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
+
+VHDX="/tmp/windows/methalo.vhdx"
+if [ ! -s "$VHDX" ]; then
+    echo "[ERROR] The VM file is empty or missing! Boot Windows first."
+    exit 1
+fi
+
+BIN_ID="methalo-$(date +%s)"
+FILENAME="methalo.vhdx"
+FILE_SIZE=$(stat -c%s "$VHDX")
+
+echo "[SYSTEM] Uploading 23GB VM to Filebin (Bin: $BIN_ID)..."
+curl -# -f -T "$VHDX" \
+     -H "Content-Type: application/octet-stream" \
+     -H "Content-Length: $FILE_SIZE" \
+     "https://filebin.net/$BIN_ID/$FILENAME"
+
+if [ $? -ne 0 ]; then
+    echo "----------------------------------------------------"
+    echo "[ERROR] UPLOAD FAILED!"
+    echo "----------------------------------------------------"
+    exit 1
+fi
+
+LINK="https://filebin.net/$BIN_ID/$FILENAME"
+
+echo "----------------------------------------------------"
+echo "[SUCCESS] YOUR VM HAS BEEN EXPORTED!"
+echo "RESTORE LINK: $LINK"
+echo "----------------------------------------------------"
+
+echo "[SYSTEM] Sending link to $DEST_EMAIL..."
+python3 <<EOF
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+msg = MIMEMultipart(ASwq1wxxxxxxxxxxxxxx6)
+msg['From'] = "$SENDER_EMAIL"
+msg['To'] = "$DEST_EMAIL"
+msg['Subject'] = "🚀 Your Methalo VM Export is Ready!"
+
+body = f"""
+Hello,
+
+Your Windows VM has been successfully backed up to Filebin.
+
+----------------------------------------------------
+INSTALL LINK: { "$LINK" }
+----------------------------------------------------
+
+HOW TO REINSTALL:
+1. Start a new Codespace.
+2. Open the terminal.
+3. Type: vm-import { "$LINK" }
+
+NOTE: This link will expire in 5 days.
+
+- Methalo Automated System
+"""
+msg.attach(MIMEText(body, 'plain'))
+
+try:
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login("$SENDER_EMAIL", "$SENDER_PASS")
+    server.send_message(msg)
+    server.quit()
+    print("[SUCCESS] Email sent!")
+except Exception as e:
+    print(f"[ERROR] Failed to send email: {e}")
+EOF
