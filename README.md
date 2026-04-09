@@ -36,6 +36,15 @@ After you run `start`, wait about 3-4 minutes for Windows to boot.
 > **Before** <img width="1361" height="675" alt="IIS" src="https://github.com/user-attachments/assets/5aadab01-2762-46b6-b514-9e9522d5ede0" />
 >**After** <img width="1362" height="674" alt="myrtille" src="https://github.com/user-attachments/assets/883856d1-2f96-4452-8424-260367a924dd" />
 
+##  Signing into the RDP
+
+1. **The email and the password will always be the same**
+2. **You can leave the Hostname empty, and it'll default to localhost; you can use 127.0.0.1, or 10.0.2.15, both do the same thing.**
+3. **Username: Methalo**
+4. **Password: Lp842010**
+
+> <img width="1360" height="674" alt="signin" src="https://github.com/user-attachments/assets/28c9fd40-47c6-48af-867a-8f1216ce50b3" />
+
 ##  Export & Backup Feature
 
 Since Codespaces are temporary, they will delete your data if they stop, and they stop after 30 minutes of inactivity (can be set to 240 minutes), so you can save and import the saved VM if you want to save data:
