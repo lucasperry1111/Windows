@@ -2,7 +2,7 @@ mkdir -p /tmp/windows
 cp /workspaces/Windows/.devcontainer/helpers/* /usr/local/bin/ 2>/dev/null
 chmod +x /usr/local/bin/*
 
-echo "[SYSTEM] Installing Required Tools..."
+echo "[SYSTEM] Installing tools..."
 sudo apt-get update && sudo apt-get install -y --no-install-recommends qemu-system-x86 qemu-utils wget curl novnc websockify net-tools ovmf stunnel4
 sudo apt-get clean
 
@@ -17,11 +17,6 @@ key = /etc/stunnel/stunnel.key
 EOF'
 
 echo '----------------------------------------------------'
-echo '[SUCCESS] METHALO CODESPACE IS READY!'
-echo '----------------------------------------------------'
-echo 'TO BOOT A NEW VM:'
-echo '  The system will download the default VM when you first type "start".'
-echo ''
-echo 'TO RESTORE A SAVED VM:'
-echo '  Type "vm-import" and paste the export link from your last save.'
+echo '[SUCCESS] SETUP COMPLETE!'
+echo 'Type "start" to download and boot Windows.'
 echo '----------------------------------------------------'
