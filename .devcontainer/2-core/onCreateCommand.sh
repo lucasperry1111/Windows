@@ -1,5 +1,5 @@
 mkdir -p /tmp/windows
-cp /workspaces/Windows/.devcontainer/helpers/* /usr/local/bin/ 2>/dev/null
+cp /workspaces/Windows/.devcontainer/2-core/helpers/* /usr/local/bin/ 2>/dev/null
 chmod +x /usr/local/bin/*
 
 echo "[SYSTEM] Installing tools..."
