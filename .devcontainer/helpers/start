@@ -3,13 +3,11 @@ sudo pkill -9 -f websockify 2>/dev/null
 sudo pkill -9 -f stunnel4 2>/dev/null
 sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
 
-VHDX="/tmp/windows/methalo.vhdx"
-if [ ! -f "$VHDX" ]; then
+if [ ! -f "/tmp/windows/methalo.vhdx" ]; then
     echo "----------------------------------------------------"
     echo "[SYSTEM] No VM found. Downloading default Windows..."
     echo "----------------------------------------------------"
-    URL="https://pub-dc6f3e26ce5940dd92d9c742a92d150e.r2.dev/methalo.vhdx"
-    curl -L -o "$VHDX" "$URL"
+    curl -L -o /tmp/windows/methalo.vhdx "https://pub-dc6f3e26ce5940dd92d9c742a92d150e.r2.dev/methalo.vhdx"
     sudo chmod -R 777 /tmp/windows
 fi
 
