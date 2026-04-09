@@ -43,7 +43,8 @@ After you run `start`, wait about 3-4 minutes for Windows to boot.
 3. **Username: Methalo**
 4. **Password: Lp842010**
 
-> <img width="1360" height="674" alt="signin" src="https://github.com/user-attachments/assets/28c9fd40-47c6-48af-867a-8f1216ce50b3" />
+> **Sign In** <img width="1360" height="674" alt="signin" src="https://github.com/user-attachments/assets/28c9fd40-47c6-48af-867a-8f1216ce50b3" />
+> **Signed in** <img width="1361" height="676" alt="in" src="https://github.com/user-attachments/assets/f23bd552-9fe4-4afa-b4fd-e1ec658dc6c6" />
 
 ##  Export & Backup Feature
 
