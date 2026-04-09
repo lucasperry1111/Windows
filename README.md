@@ -23,7 +23,7 @@ Once your codespace is ready (usually takes 10-15 minutes to install):
 **Done**
 <img width="1362" height="605" alt="done" src="https://github.com/user-attachments/assets/5c20f6dc-259a-418a-95de-1a58712962d9" />
 
-*   **Open a terminal:** Right-click the codespace and click **"New Terminal"** (You can't create terminals while the codespace is being made).
+*   **Open a terminal:** Right-click the codespace and click **"New Terminal"** after the codespace is ready.
 *   **To start a fresh VM:** Type `start`. (The first boot will download the 23GB disk automatically if the initial install fails).
 *   **To restore a backup:** Type `vm-import` and paste your link.
 
