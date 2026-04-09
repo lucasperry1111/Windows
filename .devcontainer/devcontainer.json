@@ -1,5 +1,5 @@
 {
-    "name": "Methalo (Default)",
+    "name": "Methalo (Import VM)",
     "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
     "forwardPorts": [ 8008, 8006 ],
     "portsAttributes": {
