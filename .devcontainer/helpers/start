@@ -1,25 +1,28 @@
-sudo pkill -9 -f qemu-system-x86_64 2>/dev/null
-sudo pkill -9 -f websockify 2>/dev/null
-sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
+mkdir -p /tmp/windows
+cp /workspaces/Windows/.devcontainer/helpers/* /usr/local/bin/ 2>/dev/null
+chmod +x /usr/local/bin/*
 
-echo "[SYSTEM] Starting noVNC Console..."
-sudo cp /usr/share/novnc/vnc.html /usr/share/novnc/index.html 2>/dev/null
-sudo /usr/bin/websockify --web /usr/share/novnc/ 8006 localhost:5900 >/dev/null 2>&1 &
-sleep 2
+echo "[SYSTEM] Installing Required Tools..."
+sudo apt-get update && sudo apt-get install -y --no-install-recommends qemu-system-x86 qemu-utils wget curl novnc websockify net-tools ovmf stunnel4
+sudo apt-get clean
 
-echo "[SYSTEM] Booting Windows..."
-sudo qemu-system-x86_64 \
-  -m 12G \
-  -smp 4 \
-  -enable-kvm \
-  -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time \
-  -drive if=pflash,format=raw,readonly=on,file=/usr/share/OVMF/OVMF_CODE_4M.fd \
-  -drive file=/tmp/windows/methalo.vhdx,format=vhdx,cache=writeback,aio=threads \
-  -netdev user,id=net0,hostfwd=tcp::8008-:80 \
-  -device e1000,netdev=net0 \
-  -vnc :0 \
-  -vga none \
-  -device virtio-vga \
-  -device usb-ehci,id=usb,bus=pci.0,addr=0x7 \
-  -device usb-tablet \
-  -audiodev none,id=none
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/stunnel/stunnel.key -out /etc/stunnel/stunnel.crt -subj "/C=US/ST=State/L=City/O=Organization/CN=localhost"
+sudo bash -c 'cat > /etc/stunnel/myrtille.conf <<EOF
+pid = /tmp/stunnel.pid
+[myrtille]
+accept = 443
+connect = 127.0.0.1:8080
+cert = /etc/stunnel/stunnel.crt
+key = /etc/stunnel/stunnel.key
+EOF'
+
+# 4. Success Message (Instructions for User)
+echo '----------------------------------------------------'
+echo '[SUCCESS] METHALO CODESPACE IS READY!'
+echo '----------------------------------------------------'
+echo 'TO BOOT A NEW VM:'
+echo '  The system will download the default VM when you first type "start".'
+echo ''
+echo 'TO RESTORE A SAVED VM:'
+echo '  Type "vm-import" and paste the export link from your last save.'
+echo '----------------------------------------------------'
