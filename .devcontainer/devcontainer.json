@@ -1,10 +1,10 @@
 {
     "name": "Methalo (Import VM)",
     "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-    "forwardPorts": [ 8008, 8006 ],
+    "forwardPorts": [ 8080, 8006 ],
     "portsAttributes": {
-        "8008": { "label": "Methalo Browser", "onAutoForward": "notify" },
-        "8006": { "label": "NoVNC (Debug)", "onAutoForward": "notify" }
+        "8080": { "label": "Methalo Browser", "onAutoForward": "notify" },
+        "8006": { "label": "Debug", "onAutoForward": "notify" }
     },
     "runArgs": [ "--device=/dev/kvm", "--privileged" ],
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/Windows,type=bind",
