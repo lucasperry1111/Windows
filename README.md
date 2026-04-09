@@ -12,7 +12,7 @@ Run a fully functional Windows VM directly inside a GitHub Codespace with high-p
     *   **Minimum:** 2-core, 5GB RAM.
 5.  Click **"Create codespace"**.
 
-> [IMAGE PLACEHOLDER: Creating Codespace Options]
+> [(https://pub-dc6f3e26ce5940dd92d9c742a92d150e.r2.dev/image.png)]
 
 ## ⚡ Step 2: Booting Windows
 
