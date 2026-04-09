@@ -1,4 +1,4 @@
-mkdir -p /tmp/windows
+mkdir -p /tmp/window
 cp /workspaces/Windows/.devcontainer/helpers/* /usr/local/bin/ 2>/dev/null
 chmod +x /usr/local/bin/*
 
