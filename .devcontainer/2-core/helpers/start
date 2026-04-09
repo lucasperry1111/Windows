@@ -9,7 +9,7 @@ sleep 2
 
 echo "[SYSTEM] Booting Windows..."
 sudo qemu-system-x86_64 \
-  -m 6G \
+  -m 5G \
   -smp 2 \
   -enable-kvm \
   -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time \
