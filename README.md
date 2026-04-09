@@ -9,8 +9,6 @@ Run a fully functional Windows VM directly inside a GitHub Codespace with high-p
 3.  Click the **"..."** (Options) and select **"New with options..."**.
 
  <img width="1350" height="607" alt="layout" src="https://github.com/user-attachments/assets/30b20e13-49eb-4587-b3a0-6c5f862c09be" />
-
-
 4.  **Machine Type:** 
     *   **Recommended:** 4-core, 16GB RAM.
     *   **Minimum:** 2-core, 8GB RAM.
