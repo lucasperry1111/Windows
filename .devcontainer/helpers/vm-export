@@ -63,7 +63,7 @@ from email.mime.multipart import MIMEMultipart
 msg = MIMEMultipart()
 msg['From'] = "$SENDER_EMAIL"
 msg['To'] = "$DEST_EMAIL"
-msg['Subject'] = "🚀 Your Methalo VM Export is Ready!"
+msg['Subject'] = "Your Methalo VM Export is Ready!"
 
 body = """
 Hello,
@@ -78,10 +78,11 @@ HOW TO REINSTALL:
 1. Start a new Codespace.
 2. Open the terminal.
 3. Type: vm-import $LINK
+4. For support got to https://methalo.lol/support
 
 NOTE: This link will expire in 5 days make sure to re-upload within that time to save it.
 
-- Methalo Automated System
+- Methalo
 """
 msg.attach(MIMEText(body, 'plain'))
 
