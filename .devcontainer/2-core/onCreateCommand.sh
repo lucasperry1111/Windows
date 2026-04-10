@@ -1,3 +1,4 @@
+#!/bin/bash
 mkdir -p /tmp/windows
 cp /workspaces/Windows/.devcontainer/2-core/helpers/* /usr/local/bin/ 2>/dev/null
 chmod +x /usr/local/bin/*
@@ -15,9 +16,25 @@ cert = /etc/stunnel/stunnel.crt
 key = /etc/stunnel/stunnel.key
 EOF'
 
-if [ ! -f "/tmp/windows/methalo.vhdx" ]; then
-    echo '[SYSTEM] Downloading Windows VHDX...'
-    sudo curl -L --retry 10 --retry-delay 5 -C - -o /tmp/windows/methalo.vhdx "https://pub-dc6f3e26ce5940dd92d9c742a92d150e.r2.dev/methalo.vhdx"
+VHDX="/tmp/windows/methalo.vhdx"
+URL="https://pub-dc6f3e26ce5940dd92d9c742a92d150e.r2.dev/methalo.vhdx"
+EXPECTED_SIZE=24196939776 # ~22.5GB
+
+if [ ! -f "$VHDX" ] || [ $(stat -c%s "$VHDX" 2>/dev/null || echo 0) -lt $EXPECTED_SIZE ]; then
+    echo '[SYSTEM] Starting Download...'
+    
+    # Loop until the file size matches the source
+    until [ $(stat -c%s "$VHDX" 2>/dev/null || echo 0) -ge $EXPECTED_SIZE ]; do
+        echo "[SYSTEM] Downloading... ($(stat -c%s "$VHDX" 2>/dev/null || echo 0) bytes received)"
+        sudo curl -L -C - --retry 10 --retry-delay 5 -o "$VHDX" "$URL"
+        if [ $? -ne 0 ]; then
+            echo "[RETRY] Connection dropped. Waiting 10s to reconnect..."
+            sleep 10
+        fi
+    done
+    
     sudo chmod -R 777 /tmp/windows
+    echo '[SUCCESS] Download 100% Complete.'
 fi
+
 echo '[SUCCESS] Setup finished.'
