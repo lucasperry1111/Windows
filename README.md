@@ -56,6 +56,7 @@ Since Codespaces are temporary, they will delete your data if they stop, and the
 
 4.  The system will upload your VM and email you a **Restore Link**.
 5.  Next time you start a Codespace, use **`vm-import`** with that link to pick up exactly where you left off.
+    <img width="1366" height="677" alt="import1" src="https://github.com/user-attachments/assets/a0e6dfa5-07f5-4856-9dbd-6ab8ea14665f" />
 6.  If you don't want to stay and watch the VM save, then you can close the tab, and when it's done, a link will get sent to the email you put in
 
 ##  VM options visual
