@@ -1,4 +1,4 @@
-curl -L -o /tmp/windows/methalo.vhdx "https://pub-dc6f3e26ce5940dd92d9c742a92d150e.r2.dev/methalo.vhdx"
+sudo curl -L -o /tmp/windows/methalo.vhdx "https://pub-dc6f3e26ce5940dd92d9c742a92d150e.r2.dev/methalo.vhdx"
 sudo chmod -R 777 /tmp/windows
 sudo cp /workspaces/Windows/.devcontainer/4-core/helpers/* /usr/local/bin/ 2>/dev/null
 sudo chmod +x /usr/local/bin/*
