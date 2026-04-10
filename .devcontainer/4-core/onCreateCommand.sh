@@ -17,7 +17,7 @@ EOF'
 
 if [ ! -f "/tmp/windows/methalo.vhdx" ]; then
     echo '[SYSTEM] Downloading Windows VHDX...'
-    sudo curl -L -o /tmp/windows/methalo.vhdx "https://pub-dc6f3e26ce5940dd92d9c742a92d150e.r2.dev/methalo.vhdx"
+    sudo curl -L --retry 10 --retry-delay 5 -C - -o /tmp/windows/methalo.vhdx "https://pub-dc6f3e26ce5940dd92d9c742a92d150e.r2.dev/methalo.vhdx"
     sudo chmod -R 777 /tmp/windows
 fi
 echo '[SUCCESS] Setup finished.'
