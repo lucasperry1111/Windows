@@ -43,8 +43,8 @@ After the install is done, wait about 2-3 minutes for Windows to set up the RDP 
 3. **Username: Methalo**
 4. **Password: Lp842010**
 
-> **Sign In** <img width="1360" height="674" alt="signin" src="https://github.com/user-attachments/assets/28c9fd40-47c6-48af-867a-8f1216ce50b3" />
-> **Signed in** <img width="1361" height="676" alt="in" src="https://github.com/user-attachments/assets/f23bd552-9fe4-4afa-b4fd-e1ec658dc6c6" />
+**Sign In** <img width="1360" height="674" alt="signin" src="https://github.com/user-attachments/assets/28c9fd40-47c6-48af-867a-8f1216ce50b3" />
+**Signed in** <img width="1361" height="676" alt="in" src="https://github.com/user-attachments/assets/f23bd552-9fe4-4afa-b4fd-e1ec658dc6c6" />
 
 ##  Export & Backup Feature
 
@@ -61,8 +61,8 @@ Since Codespaces are temporary, they will delete your data if they stop, and the
 
 ##  VM options visual
 
-**[Use for the import link]** (skips the default download saving time)** <img width="1348" height="607" alt="Import" src="https://github.com/user-attachments/assets/1e527729-9c33-4290-b13e-124ccdce09ca" />
+**`[Use for the import link]`** **`(skips the default download saving time)`** <img width="1348" height="607" alt="Import" src="https://github.com/user-attachments/assets/1e527729-9c33-4290-b13e-124ccdce09ca" />
 
-**[2-core settings (minimal)] (least amount of ram for the device, makes it laggy kinda)** <img width="1345" height="606" alt="2-core" src="https://github.com/user-attachments/assets/920dff51-d827-4f66-b76e-5d2d5d644fed" />
+**`[2-core settings (minimal)]`** **`(least amount of ram for the device, makes it laggy kinda)`** <img width="1345" height="606" alt="2-core" src="https://github.com/user-attachments/assets/920dff51-d827-4f66-b76e-5d2d5d644fed" />
 
-**[4-core settings (recommended)] (best, not laggy, gives you 11GB of ram download Minecraft or something)** <img width="1346" height="606" alt="4-core" src="https://github.com/user-attachments/assets/d6afaba3-c5df-4262-b86c-2cfe1d8b1f59" />
+**`[4-core settings (recommended)]`** **`(best, not laggy, gives you 11GB of ram download Minecraft or something)`** <img width="1346" height="606" alt="4-core" src="https://github.com/user-attachments/assets/d6afaba3-c5df-4262-b86c-2cfe1d8b1f59" />
