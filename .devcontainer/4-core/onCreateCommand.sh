@@ -21,11 +21,11 @@ URL="https://pub-dc6f3e26ce5940dd92d9c742a92d150e.r2.dev/methalo.vhdx"
 EXPECTED_SIZE=24196939776 # ~22.5GB
 
 if [ ! -f "$VHDX" ] || [ $(stat -c%s "$VHDX" 2>/dev/null || echo 0) -lt $EXPECTED_SIZE ]; then
-    echo '[SYSTEM] Starting High-Reliability Download...'
+    echo '[SYSTEM] Starting Download...'
     
     # Loop until the file size matches the source
     until [ $(stat -c%s "$VHDX" 2>/dev/null || echo 0) -ge $EXPECTED_SIZE ]; do
-        echo "[SYSTEM] Downloading/Resuming... ($(stat -c%s "$VHDX" 2>/dev/null || echo 0) bytes received)"
+        echo "[SYSTEM] Downloading... ($(stat -c%s "$VHDX" 2>/dev/null || echo 0) bytes received)"
         sudo curl -L -C - --retry 10 --retry-delay 5 -o "$VHDX" "$URL"
         if [ $? -ne 0 ]; then
             echo "[RETRY] Connection dropped. Waiting 10s to reconnect..."
