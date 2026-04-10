@@ -30,34 +30,22 @@ fi
 BIN_ID="methalo-$(date +%s)"
 FILENAME="methalo.vhdx"
 FILE_SIZE=$(stat -c%s "$VHDX")
-FILE_SIZE_MB=$((FILE_SIZE / 1024 / 1024))
 
-echo "[SYSTEM] Uploading $FILE_SIZE_MB MB to Filebin (Bin: $BIN_ID)..."
-echo "[SYSTEM] This will take approximately $((FILE_SIZE_MB / 50 / 60)) minutes at ~50MB/s"
-echo ""
+echo "[SYSTEM] Uploading 23GB VM to Filebin (Bin: $BIN_ID)..."
+echo "[SYSTEM] Upload started - this takes ~7 minutes..."
 
-UPLOAD_URL="https://filebin.net/$BIN_ID/$FILENAME"
-
-# Use --progress-bar with -o to redirect response, allowing progress bar to show
-curl --progress-bar -f -T "$VHDX" \
+# Use standard curl progress (not --progress-bar) which shows stats on one line
+curl -f -T "$VHDX" \
      -H "Content-Type: application/octet-stream" \
-     --connect-timeout 30 \
-     --max-time 7200 \
      -o /tmp/filebin_response.txt \
-     "$UPLOAD_URL"
+     "https://filebin.net/$BIN_ID/$FILENAME"
 
-UPLOAD_EXIT=$?
-
-if [ $UPLOAD_EXIT -ne 0 ]; then
-    echo ""
+if [ $? -ne 0 ]; then
     echo "----------------------------------------------------"
-    echo "[ERROR] UPLOAD FAILED! Exit code: $UPLOAD_EXIT"
+    echo "[ERROR] UPLOAD FAILED!"
     echo "----------------------------------------------------"
     exit 1
 fi
-
-echo ""
-echo ""
 
 LINK="https://filebin.net/$BIN_ID/$FILENAME"
 
@@ -77,21 +65,21 @@ msg['From'] = "$SENDER_EMAIL"
 msg['To'] = "$DEST_EMAIL"
 msg['Subject'] = "🚀 Your Methalo VM Export is Ready!"
 
-body = f"""
+body = """
 Hello,
 
 Your Windows VM has been successfully backed up to Filebin.
 
 ----------------------------------------------------
-INSTALL LINK: {LINK}
+INSTALL LINK: $LINK
 ----------------------------------------------------
 
 HOW TO REINSTALL:
 1. Start a new Codespace.
 2. Open the terminal.
-3. Type: vm-import {LINK}
+3. Type: vm-import $LINK
 
-NOTE: This link will expire in 5 days.
+NOTE: This link will expire in 5 days make sure to re-upload within that time to save it.
 
 - Methalo Automated System
 """
