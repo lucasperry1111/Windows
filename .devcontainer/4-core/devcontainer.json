@@ -1,9 +1,9 @@
 {
     "name": "Methalo (4-core)",
     "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-    "forwardPorts": [ 8080, 8006 ],
+    "forwardPorts": [ 8008, 8006 ],
     "portsAttributes": {
-        "8080": { "label": "Methalo Browser", "onAutoForward": "notify" },
+        "8008": { "label": "Holder", "onAutoForward": "notify" },
         "8006": { "label": "Console", "onAutoForward": "notify" }
     },
     "runArgs": [ "--device=/dev/kvm", "--privileged" ],
