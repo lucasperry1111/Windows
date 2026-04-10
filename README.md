@@ -20,7 +20,7 @@ Run a fully functional Windows VM directly inside a GitHub Codespace with high-p
 
 Once your codespace is ready (takes 15-20 minutes to install windows):
 
-**Done**
+**`Done`**
  <img width="1362" height="605" alt="done" src="https://github.com/user-attachments/assets/5c20f6dc-259a-418a-95de-1a58712962d9" />
 
 *   **Open a terminal:** Right-click the codespace and click **"New Terminal"** after the codespace is ready.
@@ -33,8 +33,8 @@ After the install is done, wait about 2-3 minutes for Windows to set up the RDP 
 
 1.  **Browser Access (Methalo Browser):** Click the ports tab (as shown in the image above) and click on the Debug 8006 to see it booting, and then click on the 8008 Methalo Browser, and it'll take you to an IIS page. Then, in the search bar, add /myrtille/ to sign into it (EX, `https://urban-space-halibut-wrwqv6v9q6jqf96vg-8008.app.github.dev/` to `https://urban-space-halibut-wrwqv6v9q6jqf96vg-8008.app.github.dev/myrtille/`) (Just an example link, yours will be different).
 
-**Before** <img width="1361" height="675" alt="IIS" src="https://github.com/user-attachments/assets/5aadab01-2762-46b6-b514-9e9522d5ede0" />
-**After** <img width="1362" height="674" alt="myrtille" src="https://github.com/user-attachments/assets/883856d1-2f96-4452-8424-260367a924dd" />
+**`Before`** <img width="1361" height="675" alt="IIS" src="https://github.com/user-attachments/assets/5aadab01-2762-46b6-b514-9e9522d5ede0" />
+**`After`** <img width="1362" height="674" alt="myrtille" src="https://github.com/user-attachments/assets/883856d1-2f96-4452-8424-260367a924dd" />
 
 ##  Signing into the RDP
 
@@ -43,8 +43,8 @@ After the install is done, wait about 2-3 minutes for Windows to set up the RDP 
 3. **Username: Methalo**
 4. **Password: Lp842010**
 
-**Sign In** <img width="1360" height="674" alt="signin" src="https://github.com/user-attachments/assets/28c9fd40-47c6-48af-867a-8f1216ce50b3" />
-**Signed in** <img width="1361" height="676" alt="in" src="https://github.com/user-attachments/assets/f23bd552-9fe4-4afa-b4fd-e1ec658dc6c6" />
+**`Sign In`** <img width="1360" height="674" alt="signin" src="https://github.com/user-attachments/assets/28c9fd40-47c6-48af-867a-8f1216ce50b3" />
+**`Signed in`** <img width="1361" height="676" alt="in" src="https://github.com/user-attachments/assets/f23bd552-9fe4-4afa-b4fd-e1ec658dc6c6" />
 
 ##  Export & Backup Feature
 
