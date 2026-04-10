@@ -25,7 +25,7 @@ EXPECTED_SIZE=$(curl -sI "$URL" | grep -i Content-Length | awk '{print $2}' | tr
 if [ -z "$EXPECTED_SIZE" ]; then EXPECTED_SIZE=24196939776; fi
 
 if [ ! -f "$VHDX" ] || [ $(stat -c%s "$VHDX" 2>/dev/null || echo 0) -lt $EXPECTED_SIZE ]; then
-    echo "[SYSTEM] File size mismatch detected. Starting sync..."
+    echo "[SYSTEM] File detected. Starting sync..."
     
     until [ $(stat -c%s "$VHDX" 2>/dev/null || echo 0) -ge $EXPECTED_SIZE ]; do
         CURRENT=$(stat -c%s "$VHDX" 2>/dev/null || echo 0)
