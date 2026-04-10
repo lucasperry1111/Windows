@@ -1,4 +1,3 @@
-#!/bin/bash
 mkdir -p /tmp/windows
 cp /workspaces/Windows/.devcontainer/2-core/helpers/* /usr/local/bin/ 2>/dev/null
 chmod +x /usr/local/bin/*
