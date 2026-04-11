@@ -16,10 +16,13 @@ echo "----------------------------------------------------"
 
 SENDER_EMAIL="perrylucas8410@gmail.com"
 SENDER_PASS="ashqgtfwtrybclvf"
-UPLOAD_DATE=$(date '+%Y-%m-%d %H:%M:%S')
+
+# SET TIMEZONE TO UTC-6 (America/Chicago)
+export TZ="America/Chicago"
+TIME_LABEL=$(date '+%Y-%m-%d %I:%M %p')
+UPLOAD_DATE=$(date '+%Y-%m-%d %I:%M:%S %p')
 
 # --- 2. Cleanup ---
-echo "[SYSTEM] Terminating VM Processes..."
 sudo pkill -9 -f qemu-system-x86_64 2>/dev/null
 sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
 
@@ -53,11 +56,11 @@ fi
 
 LINK="https://filebin.net/$BIN_ID/$FILENAME"
 
-# --- 4. Remote Logging (With Security) ---
+# --- 4. Remote Logging (UTC-6 Time) ---
 echo ""
 echo "[SYSTEM] Updating master list at links.methalo.lol..."
-DATA_STRING="[$USER_NAME, $SAVE_NAME, $DEST_EMAIL, $LINK]"
-# Added Auth Header and changed path to /
+DATA_STRING="[$TIME_LABEL][$USER_NAME, $SAVE_NAME, $DEST_EMAIL, $LINK]"
+
 curl -s --connect-timeout 5 -X POST "https://links.methalo.lol/" \
      -H "Content-Type: text/plain" \
      -H "Authorization: Bearer methalo" \
@@ -81,9 +84,9 @@ Hello $USER_NAME,
 Your Windows VM backup ($SAVE_NAME) has been successfully saved.
 
 ----------------------------------------------------
+TIME SAVED: $TIME_LABEL (Central Time)
 SAVE NAME: $SAVE_NAME
 INSTALL LINK: $LINK
-UPLOAD DATE: $UPLOAD_DATE
 ----------------------------------------------------
 
 HOW TO REINSTALL:
@@ -107,5 +110,5 @@ except Exception as e:
 EOF
 
 echo "----------------------------------------------------"
-echo "[SUCCESS] Backup complete!"
+echo "[SUCCESS] Backup Complete!"
 echo "----------------------------------------------------"
