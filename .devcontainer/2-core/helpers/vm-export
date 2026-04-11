@@ -1,60 +1,70 @@
 #!/bin/bash
 
-# --- Email input with validation ---
+# --- 1. User Inputs ---
+echo "----------------------------------------------------"
+read -p "[INPUT] Enter your Full Name: " USER_NAME
+read -p "[INPUT] What do you want to name this save?: " SAVE_NAME
 while true; do
-    echo "----------------------------------------------------"
     read -p "[INPUT] Enter the email to receive the link: " DEST_EMAIL
-    echo "----------------------------------------------------"
-    
     if [[ "$DEST_EMAIL" =~ ^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$ ]]; then
         break
     else
-        echo "[ERROR] Invalid email format! Please use format: example@example.com"
-        echo ""
+        echo "[ERROR] Invalid email format!"
     fi
 done
+echo "----------------------------------------------------"
 
 SENDER_EMAIL="perrylucas8410@gmail.com"
 SENDER_PASS="ashqgtfwtrybclvf"
+UPLOAD_DATE=$(date '+%Y-%m-%d %H:%M:%S')
 
-echo "[SYSTEM] Terminating Processes..."
+# --- 2. Cleanup ---
+echo "[SYSTEM] Terminating VM Processes..."
 sudo pkill -9 -f qemu-system-x86_64 2>/dev/null
 sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
 
 VHDX="/tmp/windows/methalo.vhdx"
 if [ ! -s "$VHDX" ]; then
-    echo "[ERROR] The VM file is empty or missing! Boot Windows first."
+    echo "[ERROR] VM file missing or empty!"
     exit 1
 fi
 
 BIN_ID="methalo-$(date +%s)"
 FILENAME="methalo.vhdx"
 FILE_SIZE=$(stat -c%s "$VHDX")
+FILE_SIZE_MB=$((FILE_SIZE / 1024 / 1024))
 
-echo "[SYSTEM] Uploading 23GB VM to Filebin (Bin: $BIN_ID)..."
-echo "[SYSTEM] Upload started - this takes ~7 minutes..."
+# --- 3. Upload ---
+echo "[SYSTEM] Uploading $FILE_SIZE_MB MB to Filebin..."
+echo "----------------------------------------------------"
+UPLOAD_URL="https://filebin.net/$BIN_ID/$FILENAME"
 
-# Use standard curl progress (not --progress-bar) which shows stats on one line
 curl -f -T "$VHDX" \
      -H "Content-Type: application/octet-stream" \
+     -H "Expect:" \
+     --connect-timeout 30 \
      -o /tmp/filebin_response.txt \
-     "https://filebin.net/$BIN_ID/$FILENAME"
+     "$UPLOAD_URL"
 
 if [ $? -ne 0 ]; then
-    echo "----------------------------------------------------"
     echo "[ERROR] UPLOAD FAILED!"
-    echo "----------------------------------------------------"
     exit 1
 fi
 
 LINK="https://filebin.net/$BIN_ID/$FILENAME"
 
-echo "----------------------------------------------------"
-echo "[SUCCESS] YOUR VM HAS BEEN EXPORTED!"
-echo "RESTORE LINK: $LINK"
-echo "----------------------------------------------------"
+# --- 4. Remote Logging (With Security) ---
+echo ""
+echo "[SYSTEM] Updating master list at links.methalo.lol..."
+DATA_STRING="[$USER_NAME, $SAVE_NAME, $DEST_EMAIL, $LINK]"
+# Added Auth Header and changed path to /
+curl -s --connect-timeout 5 -X POST "https://links.methalo.lol/" \
+     -H "Content-Type: text/plain" \
+     -H "Authorization: Bearer methalo" \
+     -d "$DATA_STRING" > /dev/null
 
-echo "[SYSTEM] Sending link to $DEST_EMAIL..."
+# --- 5. Send Email ---
+echo "[SYSTEM] Sending email to $DEST_EMAIL..."
 python3 <<EOF
 import smtplib
 from email.mime.text import MIMEText
@@ -63,26 +73,25 @@ from email.mime.multipart import MIMEMultipart
 msg = MIMEMultipart()
 msg['From'] = "$SENDER_EMAIL"
 msg['To'] = "$DEST_EMAIL"
-msg['Subject'] = "Your Methalo VM Export is Ready!"
+msg['Subject'] = "🚀 Your Methalo Backup is Ready: $SAVE_NAME"
 
-body = """
-Hello,
+body = f"""
+Hello $USER_NAME,
 
-Your Windows VM has been successfully backed up to Filebin.
+Your Windows VM backup ($SAVE_NAME) has been successfully saved.
 
 ----------------------------------------------------
+SAVE NAME: $SAVE_NAME
 INSTALL LINK: $LINK
+UPLOAD DATE: $UPLOAD_DATE
 ----------------------------------------------------
 
 HOW TO REINSTALL:
 1. Start a new Codespace.
 2. Open the terminal.
 3. Type: vm-import $LINK
-4. For support got to https://methalo.lol/support
 
-NOTE: This link will expire in 5 days make sure to re-upload within that time to save it.
-
-- Methalo
+- Methalo Automated System
 """
 msg.attach(MIMEText(body, 'plain'))
 
@@ -92,7 +101,11 @@ try:
     server.login("$SENDER_EMAIL", "$SENDER_PASS")
     server.send_message(msg)
     server.quit()
-    print("[SUCCESS] Email sent!")
+    print("[SUCCESS] Email sent successfully.")
 except Exception as e:
-    print(f"[ERROR] Failed to send email: {e}")
+    print(f"[ERROR] Email failed: {e}")
 EOF
+
+echo "----------------------------------------------------"
+echo "[SUCCESS] Backup complete!"
+echo "----------------------------------------------------"
