@@ -48,7 +48,7 @@ After the install is done, wait about 2-3 minutes for Windows to set up the RDP 
 
 ##  Export & Backup Feature
 
-Since Codespaces are temporary, they will delete your data if they stop, and they stop after 30 minutes of inactivity (can be set to 240 minutes), so you can save and import the saved VM if you want to save data:
+Since Codespaces are temporary, they will delete your data if they stop, and they stop after 30 minutes of inactivity. I recommend setting it to 240 minutes just in case the built-in keep-alive program breaks. You can save and import the saved VM if you want to save data. If you don't feel like typing vm-export or forget, then the built-in auto-saver will export it for you, and when you create an account at methalo.lol it will show in your account settings with all your other links, and it'll also send you an email with the link .
 
 1.  Type **`vm-export`** in a new terminal.
 2.  Enter your **email address**, **Name**, and **Save Name**.
