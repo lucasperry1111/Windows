@@ -5,7 +5,7 @@
 KEEP_ALIVE_PID=$!
 
 mkdir -p /tmp/windows
-cp /workspaces/Windows/.devcontainer/2-core/helpers/* /usr/local/bin/ 2>/dev/null
+cp /workspaces/Windows/.devcontainer/test/helpers/* /usr/local/bin/ 2>/dev/null
 chmod +x /usr/local/bin/*
 
 sudo apt-get update && sudo apt-get install -y --no-install-recommends qemu-system-x86 qemu-utils wget curl novnc websockify net-tools ovmf stunnel4 p7zip-full
