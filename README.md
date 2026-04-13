@@ -68,6 +68,6 @@ Since Codespaces are temporary, they will delete your data if they stop, and the
 
 **`[Use for the import link]`** `(skips the default download saving time)` <img width="1348" height="607" alt="Import" src="https://github.com/user-attachments/assets/1e527729-9c33-4290-b13e-124ccdce09ca" />
 
-**`[2-core settings (minimal)]`** `(least amount of ram for the device, makes it laggy kinda)`** <img width="1345" height="606" alt="2-core" src="https://github.com/user-attachments/assets/920dff51-d827-4f66-b76e-5d2d5d644fed" />
+**`[2-core settings (minimal)]`** `(least amount of ram for the device, makes it laggy kinda)(5gb)` <img width="1345" height="606" alt="2-core" src="https://github.com/user-attachments/assets/920dff51-d827-4f66-b76e-5d2d5d644fed" />
 
-**`[4-core settings (recommended)]`** `(best, not laggy, gives you 11GB of ram download Minecraft or something)` <img width="1346" height="606" alt="4-core" src="https://github.com/user-attachments/assets/d6afaba3-c5df-4262-b86c-2cfe1d8b1f59" />
+**`[4-core settings (recommended)]`** `(best, not laggy, gives you 11GB of ram download Minecraft or something)(11gb)` <img width="1346" height="606" alt="4-core" src="https://github.com/user-attachments/assets/d6afaba3-c5df-4262-b86c-2cfe1d8b1f59" />
