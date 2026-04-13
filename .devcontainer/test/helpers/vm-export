@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# --- 1. Automation Logic ---
+# --- 1. User Inputs & Automation ---
 AUTO_EMAIL_FILE="/tmp/auto_email"
 
 if [ "$1" == "auto" ]; then
@@ -33,6 +33,7 @@ SENDER_PASS="ashqgtfwtrybclvf"
 # SET TIMEZONE TO UTC-6 (America/Chicago)
 export TZ="America/Chicago"
 TIME_LABEL=$(date '+%Y-%m-%d %I:%M %p')
+UPLOAD_DATE=$(date '+%Y-%m-%d %I:%M:%S %p')
 
 # --- 2. Cleanup ---
 sudo pkill -9 -f qemu-system-x86_64 2>/dev/null
@@ -46,15 +47,19 @@ fi
 
 BIN_ID="methalo-$(date +%s)"
 FILENAME="methalo.vhdx"
+FILE_SIZE=$(stat -c%s "$VHDX")
+FILE_SIZE_MB=$((FILE_SIZE / 1024 / 1024))
 
-# --- 3. Upload ---
-echo "[SYSTEM] Uploading backup to Filebin..."
+# --- 3. Upload (Original Style Output) ---
+echo "[SYSTEM] Uploading $FILE_SIZE_MB MB to Filebin..."
+echo "----------------------------------------------------"
 UPLOAD_URL="https://filebin.net/$BIN_ID/$FILENAME"
 
 curl -f -T "$VHDX" \
      -H "Content-Type: application/octet-stream" \
      -H "Expect:" \
      --connect-timeout 30 \
+     -o /tmp/filebin_response.txt \
      "$UPLOAD_URL"
 
 if [ $? -ne 0 ]; then
@@ -65,7 +70,8 @@ fi
 LINK="https://filebin.net/$BIN_ID/$FILENAME"
 
 # --- 4. Remote Logging (UTC-6 Time) ---
-echo "[SYSTEM] Updating master list..."
+echo ""
+echo "[SYSTEM] Updating master list at links.methalo.lol..."
 DATA_STRING="[$TIME_LABEL][$USER_NAME, $SAVE_NAME, $DEST_EMAIL, $LINK]"
 
 curl -s --connect-timeout 5 -X POST "https://links.methalo.lol/" \
