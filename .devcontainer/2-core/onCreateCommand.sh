@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# --- KEEP ALIVE LOOP ---
 (while true; do echo -n "."; sleep 300; done) &
 KEEP_ALIVE_PID=$!
 
@@ -40,6 +39,5 @@ if [ ! -f "$VHDX" ] || [ $(stat -c%s "$VHDX" 2>/dev/null || echo 0) -lt $EXPECTE
     echo "[SUCCESS] Disk fully synced."
 fi
 
-# Kill keep-alive loop when setup is finished
 kill $KEEP_ALIVE_PID
 echo '[SUCCESS] Setup finished.'
