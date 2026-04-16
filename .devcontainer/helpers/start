@@ -1,13 +1,10 @@
 #!/bin/bash
 
-# --- 1. USER INPUT ---
 echo "----------------------------------------------------"
 read -p "[INPUT] Enter your email for the auto-save: " AUTO_EMAIL
 echo "$AUTO_EMAIL" > /tmp/auto_email
 echo "----------------------------------------------------"
 
-# --- 2. START 9-HOUR KEEP-ALIVE & AUTO-SAVE LOOP ---
-(
     for i in {1..36}; do
         sleep 900
         echo -n "." # Keep-alive ping
@@ -26,7 +23,6 @@ sudo pkill -9 -f websockify 2>/dev/null
 sudo pkill -9 -f stunnel4 2>/dev/null
 sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
 
-# --- 3. VHDX DOWNLOAD CHECK ---
 if [ ! -f "/tmp/windows/methalo.vhdx" ]; then
     echo "----------------------------------------------------"
     echo "[SYSTEM] No VM found. Downloading default Windows..."
@@ -59,5 +55,4 @@ sudo qemu-system-x86_64 \
   -device usb-tablet \
   -audiodev none,id=none
 
-# Cleanup
 kill $KEEP_ALIVE_PID
