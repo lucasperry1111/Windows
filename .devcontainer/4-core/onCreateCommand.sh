@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# --- KEEP ALIVE LOOP ---
 (while true; do echo -n "."; sleep 300; done) &
 KEEP_ALIVE_PID=$!
 
