@@ -21,7 +21,6 @@ cert = /etc/stunnel/stunnel.crt
 key = /etc/stunnel/stunnel.key
 EOF'
 
-# Kill keep-alive loop when setup is finished
 kill $KEEP_ALIVE_PID
 
 echo '----------------------------------------------------'
