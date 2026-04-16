@@ -1,19 +1,13 @@
 #!/bin/bash
 
-# --- 1. USER INPUT ---
 echo "----------------------------------------------------"
 read -p "[INPUT] Enter your email for the auto-save: " AUTO_EMAIL
 echo "$AUTO_EMAIL" > /tmp/auto_email
 echo "----------------------------------------------------"
 
-# --- 2. START 9-HOUR KEEP-ALIVE & AUTO-SAVE LOOP ---
-(
-    # 36 iterations of 15 minutes = 9 Hours total
     for i in {1..36}; do
         sleep 900
         echo -n "." # Keep-alive ping
-        
-        # After 32 iterations (8 Hours), run the auto-export
         if [ "$i" -eq 32 ]; then
             echo ""
             echo "[SYSTEM] 8 Hours reached. Starting automatic backup..."
@@ -29,6 +23,15 @@ sudo pkill -9 -f websockify 2>/dev/null
 sudo pkill -9 -f stunnel4 2>/dev/null
 sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
 
+if [ ! -f "/tmp/windows/methalo.vhdx" ]; then
+    echo "----------------------------------------------------"
+    echo "[SYSTEM] No VM found. Downloading default Windows..."
+    echo "----------------------------------------------------"
+    sudo mkdir -p /tmp/windows
+    sudo curl -L -o /tmp/windows/methalo.vhdx "https://pub-dc6f3e26ce5940dd92d9c742a92d150e.r2.dev/methalo.vhdx"
+    sudo chmod -R 777 /tmp/windows
+fi
+
 echo "[SYSTEM] Starting HTTPS Bridge (Port 8008)..."
 sudo stunnel4 /etc/stunnel/myrtille.conf
 sudo cp /usr/share/novnc/vnc.html /usr/share/novnc/index.html 2>/dev/null
@@ -37,7 +40,7 @@ sleep 2
 
 echo "[SYSTEM] Booting Windows..."
 sudo qemu-system-x86_64 \
-  -m 8G \
+  -m 5G \
   -smp 2 \
   -enable-kvm \
   -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time \
@@ -52,5 +55,4 @@ sudo qemu-system-x86_64 \
   -device usb-tablet \
   -audiodev none,id=none
 
-# Cleanup
 kill $KEEP_ALIVE_PID
