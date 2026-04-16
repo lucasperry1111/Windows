@@ -29,7 +29,6 @@ fi
 SENDER_EMAIL="perrylucas8410@gmail.com"
 SENDER_PASS="ashqgtfwtrybclvf"
 
-# SET TIMEZONE TO UTC-6 (America/Chicago)
 export TZ="America/Chicago"
 TIME_LABEL=$(date '+%Y-%m-%d %I:%M %p')
 UPLOAD_DATE=$(date '+%Y-%m-%d %I:%M:%S %p')
