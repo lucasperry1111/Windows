@@ -2,10 +2,10 @@
 
 for i in {1..36}; do
     sleep 900
-    echo -n "."
+    echo -n "." >> /tmp/autobackup.log
     if [ "$i" -eq 32 ]; then
-        echo ""
-        echo "[BACKUP] 8 Hours reached. Starting automatic backup..."
-        vm-export auto
+        echo "" >> /tmp/autobackup.log
+        echo "[BACKUP] 8 Hours reached. Starting automatic backup..." >> /tmp/autobackup.log
+        vm-export auto >> /tmp/autobackup.log 2>&1
     fi
 done
