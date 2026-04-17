@@ -1,0 +1,11 @@
+#!/bin/bash
+
+for i in {1..36}; do
+    sleep 900
+    echo -n "."
+    if [ "$i" -eq 32 ]; then
+        echo ""
+        echo "[BACKUP] 8 Hours reached. Starting automatic backup..."
+        vm-export auto
+    fi
+done
