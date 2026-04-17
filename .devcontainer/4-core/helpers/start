@@ -43,4 +43,12 @@ sudo qemu-system-x86_64 \
   -device usb-tablet \
   -audiodev none,id=none &
 
-nohup autobackup >/dev/null 2>&1
+# Launch autobackup with log file
+nohup autobackup > /tmp/autobackup.log 2>&1 &
+
+echo "[SYSTEM] VM started. Monitoring backup timer..."
+echo "[SYSTEM] Press Ctrl+C to stop watching (VM keeps running)."
+
+# Auto-run tail to keep terminal alive
+sleep 2
+tail -f /tmp/autobackup.log
